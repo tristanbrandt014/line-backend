@@ -5,9 +5,13 @@ import jwt from "jsonwebtoken";
 
 const SALT_WORK_FACTOR = 10;
 
+// In seconds (14 days)
+export const expiresIn = 14 * 24 * 60 * 60;
+
 export interface IUserWithToken {
   user: IUserModel;
   token: string;
+  expiresIn: number;
 }
 
 type createType = (
@@ -45,7 +49,8 @@ export const create: createType = async args => {
 
   return {
     user,
-    token
+    token,
+    expiresIn
   };
 };
 
@@ -112,6 +117,6 @@ export const generateToken: GenerateToken = id => {
     : "super secret secret";
 
   return jwt.sign({ id }, secret, {
-    expiresIn: "14d"
+    expiresIn: `${expiresIn}s`
   });
 };

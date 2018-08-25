@@ -9,7 +9,6 @@ export const Query = gql`
 
 Query.getChat = async (root, params, context) => {
   const user = await context.authenticate();
-  console.log(user);
   if (!user) {
     throw new Error(errors.UNAUTHENTICATED);
   }

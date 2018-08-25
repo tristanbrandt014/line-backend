@@ -4,5 +4,6 @@ export const UserWithToken = gql`
   type UserWithToken {
     user: User
     token: String
+    expiresIn: Int
   }
 `;

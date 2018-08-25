@@ -37,7 +37,7 @@ ws.listen(port, () => {
       subscribe,
       // TODO: auth
       onConnect() {
-        return createContext();
+        return createContext(async () => {});
       }
     },
     {

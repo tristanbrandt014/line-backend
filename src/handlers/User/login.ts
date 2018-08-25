@@ -1,6 +1,6 @@
 import { IUserModel } from "./model";
 import User from "./model";
-import { IUserWithToken, generateToken } from "./create";
+import { IUserWithToken, generateToken, expiresIn } from "./create";
 import { errors } from "../../utils/errors";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -25,7 +25,8 @@ export const login: Login = async args => {
 
   return {
     user,
-    token
+    token,
+    expiresIn
   };
 };
 
@@ -40,6 +41,7 @@ export const decodeToken: DecodeToken = token => {
   try {
     decoded = jwt.verify(token, secret) as { id: string };
   } catch (e) {
+    console.log("here", token, e);
     throw new Error(errors.FAILED_TO_DECODE_TOKEN);
   }
 

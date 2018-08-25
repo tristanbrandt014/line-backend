@@ -28,7 +28,7 @@ export const AuthMiddleware = async (
     req.authentication = (async () => {
       let error: string;
       let user: IUserModel;
-      const token =
+      const token: string =
         req.body.token || req.query.token || req.headers["authorization"];
       if (!token) {
         return {
@@ -37,7 +37,9 @@ export const AuthMiddleware = async (
         };
       }
       try {
-        const id = User.decodeToken(token);
+        // header looks like "Bearer <token>". Token will always be at the end. Need to get <token>
+        const tokenVal = token.split(" ").reverse()[0];
+        const id = User.decodeToken(tokenVal);
         const result = await UserModel.findById(id);
         if (!result) {
           error = "failed to decode";

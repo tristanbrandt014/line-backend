@@ -3,7 +3,7 @@ import { IContext } from "../types";
 import { IUserModel } from "../handlers/User/model";
 
 export const createContext = (
-  authenticate: () => Promise<IUserModel>
+  authenticate: () => Promise<IUserModel | void>
 ): IContext => {
   return {
     handlers,
