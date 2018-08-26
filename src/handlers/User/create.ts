@@ -37,6 +37,8 @@ export const create: createType = async args => {
     throw new Error("Username already exists");
   }
 
+  console.log("args", args);
+
   const displayName = args.displayName ? args.displayName : args.username;
 
   const user = await User.create({

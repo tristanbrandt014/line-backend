@@ -10,7 +10,7 @@ export const schema: Schema = new Schema(
     display_name: String,
     password: String
   },
-  { id: false }
+  { id: false, timestamps: true }
 );
 
 export default model<IUserModel>("User", schema, collections.User);

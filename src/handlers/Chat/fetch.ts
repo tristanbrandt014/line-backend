@@ -1,27 +1,25 @@
-import User, { IUserModel } from "./model";
+import Chat, { IChatModel } from "./model";
 import { ListQuery } from "list";
 import { errors } from "../../utils/errors";
 import { ObjectID } from "bson";
 
 interface IFilters {
-  onlyOthers?: boolean;
-  ids?: string[] | ObjectID[];
+  mine?: boolean;
 }
 
-export const fetch: ListQuery<IUserModel, IFilters> = async (args, context) => {
+export const fetch: ListQuery<IChatModel, IFilters> = async (args, context) => {
   const currentUser = await context.authenticate();
   if (!currentUser) {
     throw new Error(errors.UNAUTHENTICATED);
   }
-
-  const query = User.find();
-
-  if (args.filters.onlyOthers) {
-    query.where("_id").ne(currentUser._id);
+  if (!args.filters.mine) {
+    throw new Error(errors.UNAUTHORISED);
   }
 
-  if (args.filters.ids) {
-    query.where("_id").in(args.filters.ids);
+  const query = Chat.find();
+
+  if (args.filters.mine) {
+    query.where("users").equals(currentUser._id);
   }
 
   const results = await query.exec();

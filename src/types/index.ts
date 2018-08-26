@@ -3,3 +3,4 @@ export * from "./user";
 export * from "./context";
 export * from "./authentication";
 export * from "./request";
+export * from "./chat";

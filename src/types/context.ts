@@ -1,7 +1,7 @@
 import * as handlers from "../handlers";
-import { IUser } from "user";
+import { IUserModel } from "../handlers/User/model";
 
 export interface IContext {
   handlers: typeof handlers;
-  authenticate: () => Promise<IUser | void>;
+  authenticate: () => Promise<IUserModel | void>;
 }

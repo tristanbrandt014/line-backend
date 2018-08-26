@@ -4,7 +4,6 @@ import { IUserWithToken, generateToken, expiresIn } from "./create";
 import { errors } from "../../utils/errors";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { isString } from "util";
 
 type Login = (
   args: { username: string; password: string }
