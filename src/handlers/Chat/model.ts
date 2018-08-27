@@ -8,12 +8,15 @@ export const messageSchema: Schema = new Schema(
   {
     from: Schema.Types.ObjectId,
     content: String,
-    read: Boolean
+    read: Boolean,
+    uuid: String
   },
   { id: false, timestamps: true }
 );
 
-export interface IChatModel extends IChat, Document {}
+export interface IChatModel extends IChat, Document {
+  messages: IMessageModel[];
+}
 
 export const schema: Schema = new Schema(
   {

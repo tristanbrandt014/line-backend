@@ -11,6 +11,8 @@ import { SubscriptionServer } from "subscriptions-transport-ws";
 import { execute, subscribe } from "graphql";
 import { pubsub, topics } from "./utils/pubsub";
 import { connect as connectToDB } from "./db";
+import { decodeToken } from "./handlers/User";
+import User from "./handlers/User/model";
 
 connectToDB();
 
@@ -36,7 +38,14 @@ ws.listen(port, () => {
       schema,
       subscribe,
       // TODO: auth
-      onConnect() {
+      onConnect(options: any) {
+        if (options && options.authorization) {
+          const authenticate = async () => {
+            const id = decodeToken(options.authorization);
+            return User.findById(id);
+          };
+          return createContext(authenticate);
+        }
         return createContext(async () => {});
       }
     },

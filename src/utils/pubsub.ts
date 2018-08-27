@@ -20,5 +20,6 @@ export const pubsub = new RedisPubSub({
 });
 
 export enum topics {
-  POLL = "poll"
+  POLL = "poll",
+  NEW_MESSAGE = "newMessage"
 }

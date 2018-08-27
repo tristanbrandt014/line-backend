@@ -22,16 +22,6 @@ export const fetchOne: fetchOneType = async (args, context) => {
     throw new Error(errors.INVALID_PARAMS);
   }
 
-  if (typeof args.conditions.userId === "string") {
-    if (args.conditions.userId === currentUser._id.toString()) {
-      throw new Error(errors.INVALID_PARAMS);
-    }
-  } else {
-    if (args.conditions.userId.equals(currentUser._id)) {
-      throw new Error(errors.INVALID_PARAMS);
-    }
-  }
-
   let chat: IChatModel;
 
   if (args.conditions.id) {
@@ -40,6 +30,15 @@ export const fetchOne: fetchOneType = async (args, context) => {
       users: currentUser._id
     });
   } else if (args.conditions.userId) {
+    if (typeof args.conditions.userId === "string") {
+      if (args.conditions.userId === currentUser._id.toString()) {
+        throw new Error(errors.INVALID_PARAMS);
+      }
+    } else {
+      if (args.conditions.userId.equals(currentUser._id)) {
+        throw new Error(errors.INVALID_PARAMS);
+      }
+    }
     chat = await Chat.findOne({
       users: {
         $all: [args.conditions.userId, currentUser._id]

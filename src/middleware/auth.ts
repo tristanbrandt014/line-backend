@@ -12,7 +12,6 @@ export const AuthMiddleware = async (
   next: NextFunction
 ) => {
   const validateAuthState = (authState: IAuthState) => {
-    console.log(authState);
     if (authState.error) {
       throw new Error(errors.FAILED_TO_DECODE_TOKEN);
     } else if (authState.user) {

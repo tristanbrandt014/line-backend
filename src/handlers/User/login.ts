@@ -40,7 +40,6 @@ export const decodeToken: DecodeToken = token => {
   try {
     decoded = jwt.verify(token, secret) as { id: string };
   } catch (e) {
-    console.log("here", token, e);
     throw new Error(errors.FAILED_TO_DECODE_TOKEN);
   }
 

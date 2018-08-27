@@ -178,19 +178,9 @@
     "@types/mongodb" "*"
     "@types/node" "*"
 
-"@types/morgan@^1.7.35":
-  version "1.7.35"
-  resolved "https://registry.yarnpkg.com/@types/morgan/-/morgan-1.7.35.tgz#6358f502931cc2583d7a94248c41518baa688494"
-  dependencies:
-    "@types/express" "*"
-
 "@types/node@*", "@types/node@^10.1.0":
   version "10.7.1"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.7.1.tgz#b704d7c259aa40ee052eec678758a68d07132a2e"
-
-"@types/owasp-password-strength-test@^1.3.0":
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/@types/owasp-password-strength-test/-/owasp-password-strength-test-1.3.0.tgz#f639e38847eeb0db14bf7b70896cecd4342ac571"
 
 "@types/range-parser@*":
   version "1.2.2"
@@ -202,6 +192,12 @@
   dependencies:
     "@types/express-serve-static-core" "*"
     "@types/mime" "*"
+
+"@types/uuid@^3.4.3":
+  version "3.4.3"
+  resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-3.4.3.tgz#121ace265f5569ce40f4f6d0ff78a338c732a754"
+  dependencies:
+    "@types/node" "*"
 
 "@types/ws@^5.1.2":
   version "5.1.2"
@@ -456,12 +452,6 @@ base@^0.11.1:
     isobject "^3.0.1"
     mixin-deep "^1.2.0"
     pascalcase "^0.1.1"
-
-basic-auth@~2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/basic-auth/-/basic-auth-2.0.0.tgz#015db3f353e02e56377755f962742e8981e7bbba"
-  dependencies:
-    safe-buffer "5.1.1"
 
 bcrypt@^3.0.0:
   version "3.0.0"
@@ -1922,16 +1912,6 @@ mongoose@5.2.8:
     safe-buffer "5.1.2"
     sliced "1.0.1"
 
-morgan@^1.9.0:
-  version "1.9.0"
-  resolved "https://registry.yarnpkg.com/morgan/-/morgan-1.9.0.tgz#d01fa6c65859b76fcf31b3cb53a3821a311d8051"
-  dependencies:
-    basic-auth "~2.0.0"
-    debug "2.6.9"
-    depd "~1.1.1"
-    on-finished "~2.3.0"
-    on-headers "~1.0.1"
-
 mpath@0.4.1:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/mpath/-/mpath-0.4.1.tgz#ed10388430380bf7bbb5be1391e5d6969cb08e89"
@@ -2137,10 +2117,6 @@ on-finished@~2.3.0:
   dependencies:
     ee-first "1.1.1"
 
-on-headers@~1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/on-headers/-/on-headers-1.0.1.tgz#928f5d0f470d49342651ea6794b0857c100693f7"
-
 once@^1.3.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/once/-/once-1.4.0.tgz#583b1aa775961d4b113ac17d9c50baef9dd76bd1"
@@ -2161,10 +2137,6 @@ osenv@^0.1.4:
   dependencies:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
-
-owasp-password-strength-test@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/owasp-password-strength-test/-/owasp-password-strength-test-1.3.0.tgz#4f629e42903e8f6d279b230d657ab61e58e44b12"
 
 p-finally@^1.0.0:
   version "1.0.0"
@@ -2970,7 +2942,7 @@ utils-merge@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
 
-uuid@^3.1.0:
+uuid@^3.1.0, uuid@^3.3.2:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"
 

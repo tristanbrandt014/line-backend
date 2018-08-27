@@ -3,6 +3,7 @@ import { IContext } from "context";
 import { errors } from "../../utils/errors";
 import { ObjectID } from "bson";
 import { IMessage, IChat } from "chat";
+import * as uuid from "uuid";
 
 type createType = (
   args: {
@@ -38,10 +39,11 @@ export const create: createType = async (args, context) => {
   const message: IMessage = {
     from: currentUser._id,
     read: false,
-    content: args.message
+    content: args.message,
+    uuid: uuid.v4()
   };
 
-  const chat: IChat = {
+  const chat = {
     users: [currentUser._id, userId],
     messages: [message]
   };

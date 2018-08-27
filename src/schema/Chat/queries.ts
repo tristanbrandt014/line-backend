@@ -4,7 +4,7 @@ import { errors } from "../../utils/errors";
 export const Query = gql`
   extend type Query {
     getChats(offset: Int, first: Int, filters: ChatListFilters!): ChatList
-    getChat(conditions: ChatConditions): Chat
+    getChat(conditions: ChatConditions!): Chat
   }
 
   input ChatListFilters {
@@ -20,10 +20,5 @@ export const Query = gql`
 Query.getChats = async (root, params, context) =>
   context.handlers.Chat.fetch(params, context);
 
-Query.getChat = async (root, params, context) => {
-  const user = await context.authenticate();
-  if (!user) {
-    throw new Error(errors.UNAUTHENTICATED);
-  }
-  return "Hello";
-};
+Query.getChat = async (root, params, context) =>
+  context.handlers.Chat.fetchOne(params, context);
