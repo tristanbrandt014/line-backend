@@ -37,7 +37,6 @@ ws.listen(port, () => {
       execute,
       schema,
       subscribe,
-      // TODO: auth
       onConnect(options: any) {
         if (options && options.authorization) {
           const authenticate = async () => {

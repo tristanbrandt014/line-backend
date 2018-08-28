@@ -4,6 +4,7 @@ import { errors } from "../../utils/errors";
 import { ObjectID } from "bson";
 import { IMessage, IChat } from "chat";
 import * as uuid from "uuid";
+import { pubsub, topics } from "../../utils/pubsub";
 
 type createType = (
   args: {
@@ -48,5 +49,11 @@ export const create: createType = async (args, context) => {
     messages: [message]
   };
 
-  return Chat.create(chat);
+  const newChat = await Chat.create(chat);
+
+  pubsub.publish(topics.NEW_CHAT, {
+    [topics.NEW_CHAT]: newChat
+  });
+
+  return newChat;
 };

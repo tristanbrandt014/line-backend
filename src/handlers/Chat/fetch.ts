@@ -25,15 +25,6 @@ export const fetch: ListQuery<IChatModel, IFilters> = async (args, context) => {
 
   const results = await query.exec();
 
-  results.sort((a, b) => {
-    const getLatestTimestamp = (chat: IChatModel) =>
-      chat.messages.reverse()[0]._id.getTimestamp();
-
-    const latestA = getLatestTimestamp(a);
-    const latestB = getLatestTimestamp(b);
-    return latestB - latestA;
-  });
-
   return {
     total: results.length,
     results

@@ -5,6 +5,7 @@ export const Query = gql`
   extend type Query {
     getChats(offset: Int, first: Int, filters: ChatListFilters!): ChatList
     getChat(conditions: ChatConditions!): Chat
+    searchChats(term: String!): [SearchResult]
   }
 
   input ChatListFilters {
@@ -22,3 +23,6 @@ Query.getChats = async (root, params, context) =>
 
 Query.getChat = async (root, params, context) =>
   context.handlers.Chat.fetchOne(params, context);
+
+Query.searchChats = async (root, params, context) =>
+  context.handlers.Chat.search(params, context);

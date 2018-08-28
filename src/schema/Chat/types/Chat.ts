@@ -1,6 +1,7 @@
 import { gql } from "../../../utils";
 import { IChatModel } from "../../../handlers/Chat/model";
 import { errors } from "../../../utils/errors";
+import { ObjectID } from "bson";
 
 export const Chat = gql`
   type Chat {
@@ -27,9 +28,14 @@ Chat.other = async (root: IChatModel, params, context) => {
   if (!currentUser) {
     throw new Error(errors.UNAUTHENTICATED);
   }
-  const filtered = root.users.filter(
-    user_id => !user_id.equals(currentUser._id)
-  );
+  const filtered = root.users
+    .map(id => {
+      if (typeof id === "string") {
+        return new ObjectID(id);
+      }
+      return id;
+    })
+    .filter(user_id => !user_id.equals(currentUser._id));
 
   if (!filtered.length || filtered.length === root.users.length) {
     return undefined;

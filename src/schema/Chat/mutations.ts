@@ -4,6 +4,7 @@ export const Mutation = gql`
   extend type Mutation {
     createChat(userId: String!, message: String!): Chat
     sendMessage(message: String!, chatId: String!): Message
+    markRead(chatId: String!): Boolean
   }
 `;
 
@@ -15,3 +16,6 @@ Mutation.createChat = (
 
 Mutation.sendMessage = (root, params, context) =>
   context.handlers.Chat.sendMessage(params, context);
+
+Mutation.markRead = (root, params, context) =>
+  context.handlers.Chat.markRead(params, context);
