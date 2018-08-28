@@ -23,6 +23,7 @@
     "@types/jsonwebtoken": "^7.2.8",
     "@types/lodash": "^4.14.116",
     "@types/mongoose": "^5.2.6",
+    "@types/url-parse": "^1.4.1",
     "@types/uuid": "^3.4.3",
     "apollo-server-express": "^2.0.4",
     "bcrypt": "^3.0.0",
@@ -37,6 +38,7 @@
     "mongoose": "5.2.8",
     "subscriptions-transport-ws": "^0.9.14",
     "tsc-watch": "^1.0.26",
+    "url-parse": "^1.4.3",
     "uuid": "^3.3.2"
   }
 }

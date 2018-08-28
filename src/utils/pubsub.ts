@@ -1,10 +1,18 @@
 import { RedisPubSub } from "graphql-redis-subscriptions";
+import parseUrl from "url-parse";
 
-const port = process.env.REDIS_PORT
+let port = process.env.REDIS_PORT
   ? parseInt(process.env.REDIS_PORT, 10)
   : 63791;
-const host = process.env.REDIS_HOST ? process.env.REDIS_HOST : "localhost";
-const password = process.env.REDIS_PASSWORD;
+let host = process.env.REDIS_HOST ? process.env.REDIS_HOST : "localhost";
+let password = process.env.REDIS_PASSWORD;
+
+if (process.env.REDIS_URL) {
+  const parsed = parseUrl(process.env.REDIS_URL);
+  port = parseInt(parsed.port, 10);
+  host = parsed.hostname;
+  password = parsed.password;
+}
 
 export const pubsub = new RedisPubSub({
   connection: {
