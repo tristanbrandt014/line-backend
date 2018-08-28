@@ -1,9 +1,12 @@
 {
   "scripts": {
+    "postinstall": "yarn build",
     "start": "yarn serve",
     "serve": "node dist/server.js",
     "watch": "tsc-watch --onSuccess \"yarn start\"",
-    "tslint": "tslint -c tslint.json -p tsconfig.json"
+    "tslint": "tslint -c tslint.json -p tsconfig.json",
+    "build": "yarn build-ts",
+    "build-ts": "tsc"
   },
   "devDependencies": {
     "concurrently": "^3.6.0",
