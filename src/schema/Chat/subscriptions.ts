@@ -55,7 +55,6 @@ Subscription.newChat = {
         if (!user) {
           return false;
         }
-        console.log(payload.newChat);
         const chat = await Chat.findOne({
           _id: payload.newChat._id,
           users: user._id
